@@ -2,13 +2,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import firebase from "../firebase/clientApp";
 import {useRouter} from 'next/router'
 
-
 const Header = () => {
   const router = useRouter();
   const [user, loading, error] = useAuthState(firebase.auth());
   return (
-    <div className="flex flex-row justify-between bg-background py-3 px-6 items-center">
-      <img className="h-10 mb-24 cursor-pointer" src="/logo.svg" alt="logo" onClick={()=>router.push("/")} />
+    <div className="flex flex-row justify-between py-3 px-6 items-center">
+      <img className="h-8 cursor-pointer" src="/logo.svg" alt="logo" onClick={()=>router.push("/")} />
 
       <div className="flex items-center">
         {user && (

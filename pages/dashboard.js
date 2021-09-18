@@ -1,7 +1,7 @@
 import firebase from "../firebase/clientApp";
 import Income from "../components/Income";
 import Expense from "../components/Expense";
-import Reeva from "../components/Reeva"
+import Reeva from "../components/Reeva";
 import Profile from "../components/Profile";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -20,11 +20,11 @@ const dashboard = () => {
         router.push("/");
       }
     }
-  }, [user,loading]);
+  }, [user, loading]);
 
   const [page, setPage] = useState("profile");
 
-  useEffect(() => {  
+  useEffect(() => {
     if (user) {
       axios
         .get(
@@ -66,13 +66,13 @@ const dashboard = () => {
       case "profile":
         return <Profile />;
       case "budgeting":
-        return <Reeva course="Budget"/>;
+        return <Reeva course="Budget" />;
       case "taxes":
-        return <Reeva course="Taxes"/>;
+        return <Reeva course="Taxes" />;
       case "cashflow":
-        return <Reeva course="CashFlow"/>;
+        return <Reeva course="CashFlow" />;
       case "creditscore":
-        return <Reeva course="CreditScore"/>;
+        return <Reeva course="CreditScore" />;
     }
   };
 
