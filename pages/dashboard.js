@@ -22,7 +22,7 @@ const dashboard = () => {
     }
   }, [user,loading]);
 
-  const [page, setPage] = useState("analytics");
+  const [page, setPage] = useState("profile");
 
   useEffect(() => {  
     if (user) {
@@ -94,18 +94,6 @@ const dashboard = () => {
     return (
       <div className="flex flex-row">
         <div className="flex flex-col w-1/4">
-          <div
-            onClick={() => setPage("analytics")}
-            className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
-              page == "analytics" && "bg-blue-500 text-white"
-            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue-500`}
-          >
-            <div className="mr-5">
-              <i className="ri-line-chart-line"></i>
-            </div>
-            <h2>Analytics</h2>
-          </div>
-
           <div
             onClick={() => setPage("budgeting")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
