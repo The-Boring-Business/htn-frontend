@@ -54,24 +54,24 @@ const dashboard = () => {
     }
   };
 
-  if (typeof window !== "undefined") {
-    const id = localStorage.getItem("id");
-    if (!id) {
-      return (
-        <div>
-          <h1>Please Enter Date of Birth</h1>
-          <form onSubmit={submitDobForm}>
-            <input
-              type="date"
-              value={dob}
-              onChange={(e) => setDob(e.target.value)}
-            />
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-      );
-    }
-  }
+  // if (typeof window !== "undefined") {
+  //   const id = localStorage.getItem("id");
+  //   if (!id) {
+  //     return (
+  //       <div>
+  //         <h1>Please Enter Date of Birth</h1>
+  //         <form onSubmit={submitDobForm}>
+  //           <input
+  //             type="date"
+  //             value={dob}
+  //             onChange={(e) => setDob(e.target.value)}
+  //           />
+  //           <button type="submit">Submit</button>
+  //         </form>
+  //       </div>
+  //     );
+  //   }
+  // }
 
   return (
     <div className="flex flex-row">
