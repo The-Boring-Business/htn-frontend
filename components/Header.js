@@ -1,12 +1,13 @@
 import { useAuthState } from "react-firebase-hooks/auth";
 import firebase from "../firebase/clientApp";
 
-
 const Header = () => {
   const [user, loading, error] = useAuthState(firebase.auth());
   return (
-    <div className="flex flex-row justify-between bg-background py-3 px-6 items-center">
-      <div className="font-bold text-3xl">Dashboard</div>
+    <div className="flex flex-row justify-between py-3 px-6 items-center">
+      <div className="font-bold text-3xl">
+        <img className="h-8" src="/logo.svg" alt="logo" />
+      </div>
 
       <div className="flex items-center">
         {user ? (
