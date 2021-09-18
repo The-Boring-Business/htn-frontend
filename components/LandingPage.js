@@ -14,11 +14,10 @@ const LandingPage = () => {
   return (
     <div className="bg-landing-page bg-contain h-screen w-screen">
       <div className="p-14 pl-20 w-1/3">
-        <img className="h-10 mb-24" src="/logo.svg" alt="logo" />
 
         <h1 className="text-6xl font-bold">
           Learn about Fintech with best in class
-          <span className="text-blue"> AI Mentor</span>
+          <span className="text-blue-500"> AI Mentor</span>
         </h1>
 
         <div className="flex flex-row">
