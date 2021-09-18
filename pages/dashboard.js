@@ -48,7 +48,7 @@ const dashboard = () => {
       .then(
         (response) => {
           console.log(response);
-          setAuthed(true);
+          setLoggedIn(1);
         },
         (error) => {
           console.log(error);
