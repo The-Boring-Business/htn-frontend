@@ -74,8 +74,8 @@ const dashboard = () => {
           <div
             onClick={() => setPage("analytics")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
-              page == "analytics" && "bg-blue text-white"
-            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue`}
+              page == "analytics" && "bg-blue-500 text-white"
+            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue-500`}
           >
             <div className="mr-5">
               <i className="ri-line-chart-line"></i>
@@ -86,8 +86,8 @@ const dashboard = () => {
           <div
             onClick={() => setPage("budgeting")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
-              page == "budgeting" && "bg-blue text-white"
-            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue`}
+              page == "budgeting" && "bg-blue-500 text-white"
+            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white hover:bg-blue-500`}
           >
             <div className="mr-5">
               <i class="ri-book-2-line"></i>
@@ -98,8 +98,8 @@ const dashboard = () => {
           <div
             onClick={() => setPage("investment")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
-              page == "investment" && "bg-blue text-white"
-            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue`}
+              page == "investment" && "bg-blue-500 text-white"
+            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue-500`}
           >
             <div className="mr-5">
               <i class="ri-book-2-line"></i>
@@ -110,8 +110,8 @@ const dashboard = () => {
           <div
             onClick={() => setPage("income")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
-              page == "income" && "bg-blue text-white"
-            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue`}
+              page == "income" && "bg-blue-500 text-white"
+            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue-500`}
           >
             <div className="mr-5">
               <i class="ri-wallet-line"></i>
@@ -122,8 +122,8 @@ const dashboard = () => {
           <div
             onClick={() => setPage("expenses")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
-              page == "expenses" && "bg-blue text-white"
-            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue`}
+              page == "expenses" && "bg-blue-500 text-white"
+            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue-500`}
           >
             <div className="mr-5">
               <i class="ri-wallet-line"></i>
@@ -134,8 +134,8 @@ const dashboard = () => {
           <div
             onClick={() => setPage("profile")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
-              page == "profile" && "bg-blue text-white"
-            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue`}
+              page == "profile" && "bg-blue-500 text-white"
+            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue-500`}
           >
             <div className="mr-5">
               <i class="ri-user-line"></i>
