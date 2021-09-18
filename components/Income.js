@@ -9,7 +9,7 @@ const Income = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState("");
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState(null);
 
   const submitIncome = (e) => {
     if (typeof window !== "undefined") {
@@ -56,9 +56,9 @@ const Income = () => {
       className="flex flex-col m-6  py-4 px-6 bg-white rounded-lg drop-shadow-xl"
       style={{ height: "36.5rem" }}
     >
-      <h1 className="font-bold text-3xl">Expenses</h1>
+      <h1 className="font-bold text-3xl">Income</h1>
       <div className="overflow-y-auto flex-row space-y-3 mb-4 h-full">
-        {transactions &&
+        {transactions ?
           transactions.map((transaction) => {
             return (
               <BudgetElement
@@ -69,7 +69,7 @@ const Income = () => {
                 type={transaction.category}
               />
             );
-          })}
+          }): <h1>Loading</h1>}
       </div>
 
       <div align="right">

@@ -1,5 +1,6 @@
 import BudgetElement from "./BudgetElement";
 import { useState } from "react";
+import ReactLoading from 'react-loading';
 import Popup from "reactjs-popup";
 const axios = require("axios");
 
@@ -8,7 +9,7 @@ const Expense = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState("");
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState(null);
 
   const submitIncome = (e) => {
     if (typeof window !== "undefined") {
@@ -57,7 +58,7 @@ const Expense = () => {
     >
       <h1 className="font-bold text-3xl">Expenses</h1>
       <div className="overflow-y-auto flex-row space-y-3 mb-4 h-full">
-        {transactions && transactions.map((transaction) => {
+        {transactions ? transactions.map((transaction) => {
           return (
             <BudgetElement
               key={transaction.id}
@@ -67,7 +68,7 @@ const Expense = () => {
               type={transaction.category}
             />
           );
-        })}
+        }) : <h1>Loading</h1>}
       </div>
 
       <div align="right">
