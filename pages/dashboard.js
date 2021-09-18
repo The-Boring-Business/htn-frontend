@@ -19,7 +19,7 @@ const dashboard = () => {
         router.push("/");
       }
     }
-  }, []);
+  }, [user,loading]);
 
   const [page, setPage] = useState("analytics");
 

@@ -9,7 +9,7 @@ const Header = () => {
       <div className="font-bold text-3xl">Dashboard</div>
 
       <div className="flex items-center">
-        {user ? (
+        {user && (
           <>
             <div className="flex flex-col mr-3">
               <div className="font-bold text-lg">{user.displayName}</div>
@@ -26,8 +26,6 @@ const Header = () => {
               />
             </div>
           </>
-        ) : (
-          <h1>Log In!</h1>
         )}
       </div>
     </div>
