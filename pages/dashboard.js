@@ -1,6 +1,7 @@
 import firebase from "../firebase/clientApp";
 import Income from "../components/Income";
 import Expense from "../components/Expense";
+import Reeva from "../components/Reeva"
 import Profile from "../components/Profile";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -64,6 +65,14 @@ const dashboard = () => {
         return <Expense />;
       case "profile":
         return <Profile />;
+      case "budgeting":
+        return <Reeva course="Budget"/>;
+      case "taxes":
+        return <Reeva course="Taxes"/>;
+      case "cashflow":
+        return <Reeva course="CashFlow"/>;
+      case "creditscore":
+        return <Reeva course="CreditScore"/>;
     }
   };
 
@@ -110,7 +119,7 @@ const dashboard = () => {
           </div>
 
           <div
-            onClick={() => setPage("investment")}
+            onClick={() => setPage("taxes")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
               page == "investment" && "bg-blue-500 text-white"
             } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue-500`}
@@ -118,7 +127,31 @@ const dashboard = () => {
             <div className="mr-5">
               <i class="ri-book-2-line"></i>
             </div>
-            <h2>Investment 101</h2>
+            <h2>Taxes</h2>
+          </div>
+
+          <div
+            onClick={() => setPage("cashflow")}
+            className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
+              page == "investment" && "bg-blue-500 text-white"
+            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue-500`}
+          >
+            <div className="mr-5">
+              <i class="ri-book-2-line"></i>
+            </div>
+            <h2>Cash Flow</h2>
+          </div>
+
+          <div
+            onClick={() => setPage("creditscore")}
+            className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
+              page == "investment" && "bg-blue-500 text-white"
+            } rounded-lg cursor-pointer bg-none text-gray font-semi-bold hover:text-white  hover:bg-blue-500`}
+          >
+            <div className="mr-5">
+              <i class="ri-book-2-line"></i>
+            </div>
+            <h2>Credit Score</h2>
           </div>
 
           <div
