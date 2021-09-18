@@ -1,13 +1,15 @@
 import BudgetElement from "./BudgetElement";
 import { useState } from "react";
 import Popup from "reactjs-popup";
+const axios = require("axios");
 
-const Income = ({transactions}) => {
+const Income = () => {
   console.log(transactions);
   const [income, setIncome] = useState(0);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState("");
+  const [transactions, setTransactions] = useState([]);
 
   const submitIncome = (e) => {
     if (typeof window !== "undefined") {
@@ -33,6 +35,22 @@ const Income = ({transactions}) => {
     }
   };
 
+  if (typeof window !== "undefined") {
+    const id = localStorage.getItem("id");
+
+    axios
+      .post("https://balanceed-db.azurewebsites.net/api/user/transaction", {
+        username: "test",
+      })
+      .then((response) => {
+        console.log("response", response.data);
+        const data = response.data.filter((transaction) => {
+          return transaction.type === "Income";
+        });
+        setTransactions(data);
+      });
+  }
+
   return (
     <div
       className="flex flex-col m-6  py-4 px-6 bg-white rounded-lg drop-shadow-xl"
@@ -40,28 +58,26 @@ const Income = ({transactions}) => {
     >
       <h1 className="font-bold text-3xl">Expenses</h1>
       <div className="overflow-y-auto flex-row space-y-3 mb-4 h-full">
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
-        <BudgetElement name="Expenses" type="text" date="date" amount="10" />
+        {transactions &&
+          transactions.map((transaction) => {
+            return (
+              <BudgetElement
+                key={transaction.id}
+                name={transaction.description}
+                amount={transaction.amount}
+                date={transaction.date}
+                type={transaction.category}
+              />
+            );
+          })}
       </div>
 
       <div align="right">
         <Popup
           trigger={
-            <button className="flex drop-shadow-3xl  items-center bg-gray  hover:bg-red px-3 py-2 text-white font-medium rounded-lg mt-5 w-max ">
+            <button className="flex drop-shadow-3xl  items-center bg-blue-500  hover:bg-red px-3 py-2 text-white font-medium rounded-lg mt-5 w-max ">
               <i className="ri-add-line mr-2 text-2xl"></i>
-              <div className>Add Expense</div>
+              <div className>Add Income</div>
             </button>
           }
           position="top center"
@@ -109,7 +125,7 @@ const Income = ({transactions}) => {
               </div>
               <button
                 type="submit"
-                className="bg-blue w-full text-white font-bold py-2 px-4 rounded-md"
+                className="bg-green-500 w-full text-white font-bold py-2 px-4 rounded-md"
               >
                 Add
               </button>
@@ -120,18 +136,5 @@ const Income = ({transactions}) => {
     </div>
   );
 };
-
-export async function getStaticProps() {
-  const id = localStorage.getItem("id");
-  console.log(id, "id");
-  const response = await axios.get(
-    "https://balanceed-db.azurewebsites.net/api/transaction",{
-      "username":"test"
-    })
-  
-  return {
-    transactions: response.data
-  }
-}
 
 export default Income;
