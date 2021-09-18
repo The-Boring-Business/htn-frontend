@@ -10,6 +10,7 @@ const axios = require("axios");
 const dashboard = () => {
   const router = useRouter();
   const [dob, setDob] = useState("");
+  const [authed, setAuthed] = useState(false);
   const [user, loading, error] = useAuthState(firebase.auth());
 
   useEffect(() => {
@@ -23,24 +24,21 @@ const dashboard = () => {
   const [page, setPage] = useState("analytics");
 
   const submitDobForm = (e) => {
-    e.preventDefault();
-    if (typeof window !== "undefined") {
-      axios
-        .post("https://balanceed-db.azurewebsites.net/api/auth/signup", {
-          username: user.displayName,
-          dob: dob,
-          email: user.email,
-        })
-        .then(
-          (response) => {
-            console.log(response);
-            localStorage.setItem("id", user.displayName);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-    }
+    axios
+      .post("https://balanceed-db.azurewebsites.net/api/auth/signup", {
+        username: user.displayName,
+        dob: dob,
+        email: user.email,
+      })
+      .then(
+        (response) => {
+          console.log(response);
+          setAuthed(true);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
 
   const renderComponent = () => {
