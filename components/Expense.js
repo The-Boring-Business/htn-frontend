@@ -21,7 +21,7 @@ const Expense = () => {
         amount: income,
         category: category,
         description: title,
-        type: "Income",
+        type: "Expense",
         currency: "$",
         username: user.displayName,
       })
@@ -42,7 +42,7 @@ const Expense = () => {
       .then((response) => {
         console.log("response", response.data);
         const data = response.data.filter((transaction) => {
-          return transaction.type === "Income";
+          return transaction.type === "Expense";
         });
         setTransactions(data);
       });
