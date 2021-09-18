@@ -18,31 +18,31 @@ const Profile = () => {
   };
 
   return (
-    <div className="rounded-md shadow-lg p-10">
+    <div className="m-6  py-4 px-6 bg-white rounded-lg drop-shadow-xl">
       <div className="flex flex-col">
-        <div className="flex flex-row">
+        <div className="flex flex-row mb-10 items-center justify-between">
           <div>
             <img
-              className="h-14 rounded-lg"
+              className="h-30 rounded-lg"
               src={user.photoURL}
               alt="profile-pic"
             />
           </div>
-          <div className="flex flex-col">
-            <h1>{user.displayName}</h1>
-            <p>Student</p>
+          <div className="flex flex-col mr-96">
+            <h1 className="font-bold text-4xl">{user.displayName}</h1>
+            <p className="font-medium text-gray text-lg">Student</p>
           </div>
-          <div>
+          <div className="flex">
             <button
-              className="bg-red p-4 rounded-lg drop-shadow-md text-white font-bold hover:bg-red"
+              className="bg-red p-4 flex items-center justify-self-end rounded-lg drop-shadow-md text-white font-bold hover:bg-red"
               onClick={signOut}
             >
-              Logout
+             <i className="ri-logout-box-line mr-2"></i> Logout
             </button>
           </div>
         </div>
         <div>
-          <h1>Select Your Goal</h1>
+          <h1 className="font-bold text-3xl mb-6">Select Your Goal</h1>
           <div className="flex flex-row">
             <GoalInput />
           </div>

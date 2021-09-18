@@ -10,15 +10,16 @@ const GoalInput = () => {
   const [date, setDate] = useState("");
 
   const handleSubmit = (e) => {
-    axios.post("https://balanceed-db.azurewebsites.net/api/goal", {
-      username: user.displayName,
-      goal_amount: amount,
-      goal_end_date: date,
-      goal_name: "Savings",
-      goal_description: "Save for your future",
-      goal_status: "20",
-    })
-    .then(
+    axios
+      .post("https://balanceed-db.azurewebsites.net/api/goal", {
+        username: user.displayName,
+        goal_amount: amount,
+        goal_end_date: date,
+        goal_name: "Savings",
+        goal_description: "Save for your future",
+        goal_status: "20",
+      })
+      .then(
         (response) => {
           console.log(response);
         },
@@ -29,15 +30,15 @@ const GoalInput = () => {
   };
 
   return (
-    <div className="bg-blue p-4 w-48 rounded-md text-white">
+    <div className="bg-purple p-4 w-48 rounded-lg text-white h-56">
       <Popup
         trigger={
-          <button className="flex drop-shadow-3xl  items-center bg-gray  hover:bg-red px-3 py-2 text-white font-medium rounded-lg mt-5 w-max ">
-            <i className="ri-add-line mr-2 text-2xl"></i>
-            <div className>Select</div>
+          <button className="flex drop-shadow-3xl  items-center bg-orange  hover:bg-red px-3 py-1 text-white font-medium rounded-lg  w-max ">
+           
+            <div className="tracking-widest">SELECT</div>
           </button>
         }
-        position="left center"
+        position="right center"
       >
         <div className=" flex flex-col bg-white p-4 rounded-xl drop-shadow-xl ">
           <div className="font-bold text-xl place-self-center mb-4">
@@ -45,6 +46,7 @@ const GoalInput = () => {
           </div>
           <form onSubmit={handleSubmit}>
             <div className=" mb-2 ">
+              <div className="text-bold">Goal Amount</div>
               <input
                 className="border-2 p-2 rounded-md"
                 type="number"
@@ -54,6 +56,8 @@ const GoalInput = () => {
               />
             </div>
             <div className="mb-4">
+              
+            <div className="text-bold">Goal Duration</div>
               <input
                 className="border-2 p-2 rounded-md w-full"
                 type="date"
@@ -64,14 +68,14 @@ const GoalInput = () => {
             </div>
             <button
               type="submit"
-              className="bg-green-500 w-full text-white font-bold py-2 px-4 rounded-md"
+              className="bg-blue w-full text-white font-bold py-2 px-4 rounded-md"
             >
               Set Goal
             </button>
           </form>
         </div>
       </Popup>
-      <h1>Learn To Budget your expenses.</h1>
+      <h1 className="font-bold text-2xl mt-16">Learn to Budget your expenses</h1>
     </div>
   );
 };
