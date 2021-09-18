@@ -2,19 +2,21 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import firebase from "../firebase/clientApp";
 import GoalInput from "../components/GoalInput";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const Profile = () => {
+  const router = useRouter();
   const [user, loading, error] = useAuthState(firebase.auth());
 
   const signOut = () => {
-    if (typeof window !== "undefined") {
-      firebase.auth().signOut();
-      router.push("/");
-      localStorage.removeItem("id")
-    }
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        router.push("/");
+      });
   };
-  
+
   return (
     <div className="rounded-md shadow-lg p-10">
       <div className="flex flex-col">
