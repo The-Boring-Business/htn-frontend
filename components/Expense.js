@@ -20,7 +20,7 @@ const Expense = () => {
           amount: income,
           category: category,
           description: title,
-          type: "Expenses",
+          type: "Expense",
           currency: "$",
           username: id,
         })

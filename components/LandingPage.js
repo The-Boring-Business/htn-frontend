@@ -27,9 +27,6 @@ const LandingPage = () => {
               <Link href="/dashboard">
                 <a className="hover:bg-blue-500">Go To Dashboard</a>
               </Link>
-              <button onClick={() => firebase.auth().signOut()}>
-                Sign Out
-              </button>
             </div>
           ) : (
             <StyledFirebaseAuth

@@ -1,6 +1,5 @@
 import { useAuthState } from "react-firebase-hooks/auth";
 import firebase from "../firebase/clientApp";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 
 const Header = () => {
