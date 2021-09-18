@@ -1,25 +1,32 @@
-import firebase from "../firebase/clientApp";
 import Popup from "reactjs-popup";
+import firebase from "../firebase/clientApp";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useState } from "react";
 const axios = require("axios");
 
 const GoalInput = () => {
+  const [user, loading, error] = useAuthState(firebase.auth());
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState("");
 
-    const handleSubmit = (e) => {
-        if (typeof window !== "undefined") {
-            const id = localStorage.getItem("id");
-            axios.post("https://balanceed-db.azurewebsites.net/api/goal",{
-                username: id,
-                goal_amount: amount,
-                goal_end_date: date,
-                goal_name:"Savings",
-                goal_description:"Save for your future",
-                goal_status: "20"
-            })
+  const handleSubmit = (e) => {
+    axios.post("https://balanceed-db.azurewebsites.net/api/goal", {
+      username: user.displayName,
+      goal_amount: amount,
+      goal_end_date: date,
+      goal_name: "Savings",
+      goal_description: "Save for your future",
+      goal_status: "20",
+    })
+    .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
         }
-    }
+      );
+  };
 
   return (
     <div className="bg-purple-400 p-4 w-48 rounded-md text-white">

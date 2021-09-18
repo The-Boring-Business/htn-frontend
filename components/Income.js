@@ -1,10 +1,12 @@
 import BudgetElement from "./BudgetElement";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import firebase from "../firebase/clientApp";
+import { useAuthState } from "react-firebase-hooks/auth";
 import Popup from "reactjs-popup";
 const axios = require("axios");
 
 const Income = () => {
-  console.log(transactions);
+  const [user, loading, error] = useAuthState(firebase.auth());
   const [income, setIncome] = useState(0);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -12,35 +14,29 @@ const Income = () => {
   const [transactions, setTransactions] = useState(null);
 
   const submitIncome = (e) => {
-    if (typeof window !== "undefined") {
-      const id = localStorage.getItem("id");
-      axios
-        .post("https://balanceed-db.azurewebsites.net/api/transaction", {
-          Tdate: date,
-          amount: income,
-          category: category,
-          description: title,
-          type: "Income",
-          currency: "$",
-          username: id,
-        })
-        .then(
-          (response) => {
-            console.log(response);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-    }
+    axios
+      .post("https://balanceed-db.azurewebsites.net/api/transaction", {
+        Tdate: date,
+        amount: income,
+        category: category,
+        description: title,
+        type: "Income",
+        currency: "$",
+        username: user.displayName,
+      })
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
-
-  if (typeof window !== "undefined") {
-    const id = localStorage.getItem("id");
-
+  useEffect(() => {
     axios
       .post("https://balanceed-db.azurewebsites.net/api/user/transaction", {
-        username: "test",
+        username: user.displayName,
       })
       .then((response) => {
         console.log("response", response.data);
@@ -49,7 +45,7 @@ const Income = () => {
         });
         setTransactions(data);
       });
-  }
+  }, []);
 
   return (
     <div
@@ -58,7 +54,7 @@ const Income = () => {
     >
       <h1 className="font-bold text-3xl">Income</h1>
       <div className="overflow-y-auto flex-row space-y-3 mb-4 h-full">
-        {transactions ?
+        {transactions ? (
           transactions.map((transaction) => {
             return (
               <BudgetElement
@@ -69,7 +65,10 @@ const Income = () => {
                 type={transaction.category}
               />
             );
-          }): <h1>Loading</h1>}
+          })
+        ) : (
+          <h1>Loading</h1>
+        )}
       </div>
 
       <div align="right">

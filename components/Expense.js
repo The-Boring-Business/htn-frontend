@@ -1,55 +1,52 @@
 import BudgetElement from "./BudgetElement";
-import { useState } from "react";
-import ReactLoading from 'react-loading';
+import { useState,useEffect } from "react";
+import ReactLoading from "react-loading";
 import Popup from "reactjs-popup";
+import firebase from "../firebase/clientApp";
+import { useAuthState } from "react-firebase-hooks/auth";
 const axios = require("axios");
 
 const Expense = () => {
   const [income, setIncome] = useState(0);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
+  const [user, loading, error] = useAuthState(firebase.auth());
   const [date, setDate] = useState("");
   const [transactions, setTransactions] = useState(null);
 
   const submitIncome = (e) => {
-    if (typeof window !== "undefined") {
-      const id = localStorage.getItem("id");
-      axios
-        .post("https://balanceed-db.azurewebsites.net/api/transaction", {
-          Tdate: date,
-          amount: income,
-          category: category,
-          description: title,
-          type: "Expense",
-          currency: "$",
-          username: id,
-        })
-        .then(
-          (response) => {
-            console.log(response);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-    }
+    axios
+      .post("https://balanceed-db.azurewebsites.net/api/transaction", {
+        Tdate: date,
+        amount: income,
+        category: category,
+        description: title,
+        type: "Income",
+        currency: "$",
+        username: user.displayName,
+      })
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
-
-  if (typeof window !== "undefined") {
-    const id = localStorage.getItem("id");
-
+  useEffect(() => {
     axios
       .post("https://balanceed-db.azurewebsites.net/api/user/transaction", {
-        username: "test",
+        username: user.displayName,
       })
       .then((response) => {
         console.log("response", response.data);
         const data = response.data.filter((transaction) => {
-          return transaction.type === "Expense";
+          return transaction.type === "Income";
         });
         setTransactions(data);
       });
-  }
+  }, []);
 
   return (
     <div
@@ -58,17 +55,21 @@ const Expense = () => {
     >
       <h1 className="font-bold text-3xl">Expenses</h1>
       <div className="overflow-y-auto flex-row space-y-3 mb-4 h-full">
-        {transactions ? transactions.map((transaction) => {
-          return (
-            <BudgetElement
-              key={transaction.id}
-              name={transaction.description}
-              amount={transaction.amount}
-              date={transaction.date}
-              type={transaction.category}
-            />
-          );
-        }) : <h1>Loading</h1>}
+        {transactions ? (
+          transactions.map((transaction) => {
+            return (
+              <BudgetElement
+                key={transaction.id}
+                name={transaction.description}
+                amount={transaction.amount}
+                date={transaction.date}
+                type={transaction.category}
+              />
+            );
+          })
+        ) : (
+          <h1>Loading</h1>
+        )}
       </div>
 
       <div align="right">
