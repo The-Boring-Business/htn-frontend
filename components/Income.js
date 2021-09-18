@@ -74,7 +74,7 @@ const Income = () => {
       <div align="right">
         <Popup
           trigger={
-            <button className="flex drop-shadow-3xl  items-center bg-blue-500  hover:bg-red px-3 py-2 text-white font-medium rounded-lg mt-5 w-max ">
+            <button className="flex drop-shadow-3xl  items-center bg-blue  hover:bg-red px-3 py-2 text-white font-medium rounded-lg mt-5 w-max ">
               <i className="ri-add-line mr-2 text-2xl"></i>
               <div className>Add Income</div>
             </button>
@@ -124,7 +124,7 @@ const Income = () => {
               </div>
               <button
                 type="submit"
-                className="bg-green-500 w-full text-white font-bold py-2 px-4 rounded-md"
+                className="bg-blue w-full text-white font-bold py-2 px-4 rounded-md"
               >
                 Add
               </button>

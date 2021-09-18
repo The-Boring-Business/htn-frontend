@@ -29,10 +29,10 @@ const GoalInput = () => {
   };
 
   return (
-    <div className="bg-purple-400 p-4 w-48 rounded-md text-white">
+    <div className="bg-blue p-4 w-48 rounded-md text-white">
       <Popup
         trigger={
-          <button className="flex drop-shadow-3xl  items-center bg-yellow-500  hover:bg-red px-3 py-2 text-white font-medium rounded-lg mt-5 w-max ">
+          <button className="flex drop-shadow-3xl  items-center bg-gray  hover:bg-red px-3 py-2 text-white font-medium rounded-lg mt-5 w-max ">
             <i className="ri-add-line mr-2 text-2xl"></i>
             <div className>Select</div>
           </button>

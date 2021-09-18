@@ -34,7 +34,7 @@ const Profile = () => {
           </div>
           <div>
             <button
-              className="bg-red-600 p-4 rounded-lg drop-shadow-md text-white font-bold hover:bg-red-500"
+              className="bg-red p-4 rounded-lg drop-shadow-md text-white font-bold hover:bg-red"
               onClick={signOut}
             >
               Logout
