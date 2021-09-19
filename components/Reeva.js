@@ -14,26 +14,6 @@ const Reeva = ({ course }) => {
   const [index, setIndex] = useState(null);
   const [data, setData] = useState(null);
 
-  useEffect(() => {
-    return () => {
-      axios
-        .post(
-          "https://balanceed-db.azurewebsites.net/api/lesson/" +
-            user.displayName +
-            "/" +
-            course,
-          {
-            Status: index,
-          }
-        )
-        .then((res) => {
-          console.log("res", res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-  }, []);
 
   useEffect(() => {
     axios
@@ -78,7 +58,7 @@ const Reeva = ({ course }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [course]);
+  }, [index]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -115,11 +95,7 @@ const Reeva = ({ course }) => {
       slow: false,
       host: "https://translate.google.com",
     });
-    const sound = new Howl({
-      src: url,
-      html5: true,
-    });
-    sound.play();
+
   };
 
   if (!isRegistered) {
