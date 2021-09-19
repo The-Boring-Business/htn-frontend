@@ -1,6 +1,5 @@
 import BudgetElement from "./BudgetElement";
 import { useState, useEffect } from "react";
-import ReactLoading from "react-loading";
 import Popup from "reactjs-popup";
 import firebase from "../firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";

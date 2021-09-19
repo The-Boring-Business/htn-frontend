@@ -4,7 +4,6 @@ import Popup from "reactjs-popup";
 import firebase from "../firebase/clientApp";
 import FadeIn from "react-fade-in";
 const axios = require("axios");
-const googleTTS = require("google-tts-api");
 
 const Reeva = ({ course }) => {
   const [user, loading, error] = useAuthState(firebase.auth());
@@ -89,11 +88,7 @@ const Reeva = ({ course }) => {
       .catch((err) => {
         console.log(err);
       });
-    const url = googleTTS.getAudioUrl("hello", {
-      lang: "en",
-      slow: false,
-      host: "https://translate.google.com",
-    });
+
   };
 
   if (!isRegistered) {
