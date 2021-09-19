@@ -2,6 +2,7 @@ import firebase from "../firebase/clientApp";
 import Income from "../components/Income";
 import Expense from "../components/Expense";
 import Reeva from "../components/Reeva";
+import Analytics from "../components/Analytics";
 import Profile from "../components/Profile";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -60,6 +61,8 @@ const dashboard = () => {
 
   const renderComponent = () => {
     switch (page) {
+      case "analytics":
+        return <Analytics />;
       case "income":
         return <Income />;
       case "expenses":
@@ -78,36 +81,48 @@ const dashboard = () => {
   };
 
   if (loggedIn == 0) {
-  return (
-    <div className=" flex flex-col place-items-center place-content-center mt-40">
-      <h1 className="font-bold text-4xl mb-4">One last step!</h1>
-      <h1 className="font-semi-bold text-2xl mb-6">Enter your Birthday</h1>
-      <form onSubmit={submitDobForm}>
-        <div className="flex flex-col">
-          <div>
-            <input
-              className="border-2 p-2 rounded-md w-full"
-              type="date"
-              value={dob}
-              onChange={(e) => setDob(e.target.value)}
-            />
+    return (
+      <div className=" flex flex-col place-items-center place-content-center mt-40">
+        <h1 className="font-bold text-4xl mb-4">One last step!</h1>
+        <h1 className="font-semi-bold text-2xl mb-6">Enter your Birthday</h1>
+        <form onSubmit={submitDobForm}>
+          <div className="flex flex-col">
+            <div>
+              <input
+                className="border-2 p-2 rounded-md w-full"
+                type="date"
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
+              />
+            </div>
+            <div>
+              <button
+                className="bg-blue p-4 text-white font-bold rounded-lg place-self-stretch w-full mt-5 text-xl "
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
           </div>
-          <div>
-            <button
-              className="bg-blue p-4 text-white font-bold rounded-lg place-self-stretch w-full mt-5 text-xl "
-              type="submit"
-            >
-              Submit
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  );
+        </form>
+      </div>
+    );
   } else if (loggedIn == 1) {
     return (
       <div className="flex flex-row border-10 border-red">
         <div className="flex flex-col w-1/4 border-40 border-blue p-8">
+          <div
+            onClick={() => setPage("analytics")}
+            className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
+              page == "analytics" && "bg-blue text-white"
+            } rounded-lg cursor-pointer bg-none  font-semi-bold hover:text-white hover:bg-blue`}
+          >
+            <div className="mr-5">
+              <i class="ri-line-chart-fill"></i>
+            </div>
+            <h2>Analytics</h2>
+          </div>
+
           <div
             onClick={() => setPage("budgeting")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
@@ -199,11 +214,7 @@ const dashboard = () => {
       </div>
     );
   } else {
-    return (
-      <>
-
-      </>
-    );
+    return <></>;
   }
 };
 
