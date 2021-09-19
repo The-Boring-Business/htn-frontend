@@ -7,6 +7,7 @@ const Analytics = () => {
       style={{ height: "36.5rem" }}
     >
       <h1 className="text-2xl font-bold">Analytics</h1>
+      <iframe src="https://dash.gallery/dash-time-series/" height={800} className="m-4"/>
     </div>
   );
 };
