@@ -57,16 +57,17 @@ const Profile = () => {
     <div className="m-6  py-4 px-6 bg-white rounded-lg drop-shadow-xl">
       <div className="flex flex-col">
         <div className="flex flex-row mb-10 items-center justify-between">
-          <div>
+          <div className=" flex items-center gap-4">
             <img
               className="h-30 rounded-lg"
               src={user.photoURL}
               alt="profile-pic"
             />
-          </div>
-          <div className="flex flex-col mr-96">
-            <h1 className="font-bold text-4xl">{user.displayName}</h1>
-            <p className="font-medium text-gray text-lg">Student</p>
+
+            <div className="flex flex-col mr-96 justify-self-start">
+              <h1 className="font-bold text-5xl">{user.displayName}</h1>
+              <p className="font-medium text-gray text-2xl">Student</p>
+            </div>
           </div>
           <div className="flex">
             <button
@@ -77,25 +78,33 @@ const Profile = () => {
             </button>
           </div>
         </div>
-        <div>
+        <div className="mb-8">
           <h1 className="font-bold text-3xl mb-6">Select Your Goal</h1>
           <div className="flex flex-row">
             <GoalInput />
           </div>
         </div>
-        <div className="my-2">
-          <h1 className="font-bold text-4xl">Your Courses</h1>
-          <div className="h-32 overflow-x-scroll flex flex-row gap-x-4">
+        <div className="my-2 mb-8">
+          <h1 className="font-bold text-3xl mb-6">Your Courses</h1>
+          <div className="h-full flex overflow-x-auto gap-4">
             {myCourses.map((course) => (
-              <CourseCard title={course.title} name={course.name} level={course.level}/>
+              <CourseCard
+                title={course.title}
+                name={course.name}
+                level={course.level}
+              />
             ))}
           </div>
         </div>
         <div className="my-2">
-          <h1 className="font-bold text-4xl">Available Courses</h1>
-          <div className="h-32 overflow-x-scroll flex flex-row gap-x-4">
-          {availableCourses.map((course) => (
-              <CourseCard title={course.title} name={course.name} level={course.level}/>
+          <h1 className="font-bold text-3xl mb-6">Available Courses</h1>
+          <div className="h-full flex overflow-x-auto gap-4">
+            {availableCourses.map((course) => (
+              <CourseCard
+                title={course.title}
+                name={course.name}
+                level={course.level}
+              />
             ))}
           </div>
         </div>

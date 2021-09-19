@@ -30,11 +30,10 @@ const GoalInput = () => {
   };
 
   return (
-    <div className="bg-purple p-4 w-48 rounded-lg text-white h-56">
+    <div className="bg-purple p-4 w-48 rounded-lg text-white h-48">
       <Popup
         trigger={
-          <button className="flex drop-shadow-3xl  items-center bg-orange  hover:bg-red px-3 py-1 text-white font-medium rounded-lg  w-max ">
-           
+          <button className="flex drop-shadow-3xl  items-center bg-orange  hover:bg-red px-3 py-1 text-white font-medium rounded-md  w-max ">
             <div className="tracking-widest">SELECT</div>
           </button>
         }
@@ -56,8 +55,7 @@ const GoalInput = () => {
               />
             </div>
             <div className="mb-4">
-              
-            <div className="text-bold">Goal Duration</div>
+              <div className="text-bold">Goal Duration</div>
               <input
                 className="border-2 p-2 rounded-md w-full"
                 type="date"
@@ -75,7 +73,10 @@ const GoalInput = () => {
           </form>
         </div>
       </Popup>
-      <h1 className="font-bold text-2xl mt-16">Learn to Budget your expenses</h1>
+      <h1 className="font-semi-bold text-xl mt-8">
+        <i className="ri-wallet-3-fill text-4xl font-medium"></i> <br />
+        Learn to Budget your expenses
+      </h1>
     </div>
   );
 };
