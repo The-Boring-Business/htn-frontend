@@ -6,7 +6,6 @@ import Profile from "../components/Profile";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import ReactLoading from "react-loading";
 
 const axios = require("axios");
 
@@ -202,7 +201,7 @@ const dashboard = () => {
   } else {
     return (
       <>
-        <ReactLoading height={667} width={375} />
+
       </>
     );
   }

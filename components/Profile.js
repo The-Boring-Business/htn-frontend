@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 const axios = require("axios");
 const Profile = () => {
   const router = useRouter();
-  const [myCourses, setMyCourses] = useState([]);
-  const [availableCourses, setAvailableCourses] = useState([]);
+  const [myCourses, setMyCourses] = useState(null);
+  const [availableCourses, setAvailableCourses] = useState(null);
   const [user, loading, error] = useAuthState(firebase.auth());
 
   const signOut = () => {
@@ -49,68 +49,76 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    getMyCourses();
-    getAvailableCourses();
+    if (user !== null) {
+      getMyCourses();
+      getAvailableCourses();
+    }
   }, [user]);
 
-  return (
-    <div className="m-6  py-4 px-6 bg-white rounded-lg drop-shadow-xl">
-      <div className="flex flex-col">
-        <div className="flex flex-row mb-10 items-center justify-between">
-          <div className=" flex items-center gap-4">
-            <img
-              className="h-30 rounded-lg"
-              src={user.photoURL}
-              alt="profile-pic"
-            />
+  if (user !== null) {
+    return (
+      <div className="m-6  py-4 px-6 bg-white rounded-lg drop-shadow-xl">
+        <div className="flex flex-col">
+          <div className="flex flex-row mb-10 items-center justify-between">
+            <div className=" flex items-center gap-4">
+              <img
+                className="h-30 rounded-lg"
+                src={user.photoURL}
+                alt="profile-pic"
+              />
 
-            <div className="flex flex-col mr-96 justify-self-start">
-              <h1 className="font-bold text-5xl">{user.displayName}</h1>
-              <p className="font-medium text-gray text-2xl">Student</p>
+              <div className="flex flex-col mr-96 justify-self-start">
+                <h1 className="font-bold text-5xl">{user.displayName}</h1>
+                <p className="font-medium text-gray text-2xl">Student</p>
+              </div>
+            </div>
+            <div className="flex">
+              <button
+                className="bg-red p-4 flex items-center justify-self-end rounded-lg drop-shadow-md text-white font-bold hover:bg-red"
+                onClick={signOut}
+              >
+                <i className="ri-logout-box-line mr-2"></i> Logout
+              </button>
             </div>
           </div>
-          <div className="flex">
-            <button
-              className="bg-red p-4 flex items-center justify-self-end rounded-lg drop-shadow-md text-white font-bold hover:bg-red"
-              onClick={signOut}
-            >
-              <i className="ri-logout-box-line mr-2"></i> Logout
-            </button>
+          <div className="mb-8">
+            <h1 className="font-bold text-3xl mb-6">Select Your Goal</h1>
+            <div className="flex flex-row">
+              <GoalInput />
+            </div>
           </div>
-        </div>
-        <div className="mb-8">
-          <h1 className="font-bold text-3xl mb-6">Select Your Goal</h1>
-          <div className="flex flex-row">
-            <GoalInput />
+          <div className="my-2 mb-8">
+            <h1 className="font-bold text-3xl mb-6">Your Courses</h1>
+            <div className="h-full flex overflow-x-auto gap-4">
+              {myCourses &&
+                myCourses.map((course) => (
+                  <CourseCard
+                    title={course.title}
+                    name={course.name}
+                    level={course.level}
+                  />
+                ))}
+            </div>
           </div>
-        </div>
-        <div className="my-2 mb-8">
-          <h1 className="font-bold text-3xl mb-6">Your Courses</h1>
-          <div className="h-full flex overflow-x-auto gap-4">
-            {myCourses.map((course) => (
-              <CourseCard
-                title={course.title}
-                name={course.name}
-                level={course.level}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="my-2">
-          <h1 className="font-bold text-3xl mb-6">Available Courses</h1>
-          <div className="h-full flex overflow-x-auto gap-4">
-            {availableCourses.map((course) => (
-              <CourseCard
-                title={course.title}
-                name={course.name}
-                level={course.level}
-              />
-            ))}
+          <div className="my-2">
+            <h1 className="font-bold text-3xl mb-6">Available Courses</h1>
+            <div className="h-full flex overflow-x-auto gap-4">
+              {availableCourses &&
+                availableCourses.map((course) => (
+                  <CourseCard
+                    title={course.title}
+                    name={course.name}
+                    level={course.level}
+                  />
+                ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <></>;
+  }
 };
 
 export default Profile;

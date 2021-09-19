@@ -4,7 +4,6 @@ import Popup from "reactjs-popup";
 import firebase from "../firebase/clientApp";
 import FadeIn from "react-fade-in";
 const axios = require("axios");
-const googleTTS = require("google-tts-api");
 
 const Reeva = ({ course }) => {
   const [user, loading, error] = useAuthState(firebase.auth());
@@ -13,7 +12,6 @@ const Reeva = ({ course }) => {
   const [reevaAnswer, setReevaAnswer] = useState("");
   const [index, setIndex] = useState(null);
   const [data, setData] = useState(null);
-
 
   useEffect(() => {
     axios
@@ -90,11 +88,6 @@ const Reeva = ({ course }) => {
       .catch((err) => {
         console.log(err);
       });
-    const url = googleTTS.getAudioUrl("hello", {
-      lang: "en",
-      slow: false,
-      host: "https://translate.google.com",
-    });
 
   };
 
@@ -102,7 +95,10 @@ const Reeva = ({ course }) => {
     return (
       <div className="mx-auto my-auto">
         <form onSubmit={handleSubmit}>
-          <button className="bg-blue p-4 text-white rounded-lg font-semi-bold shadow-lg" type="submit">
+          <button
+            className="bg-blue p-4 text-white rounded-lg font-semi-bold shadow-lg"
+            type="submit"
+          >
             Register for course
           </button>
         </form>
@@ -122,12 +118,14 @@ const Reeva = ({ course }) => {
                 ⏮ Previous
               </button>
             )}
-            <button
-              className="bg-blue text-white font-semi-bold p-4 rounded-lg shadow-xl-"
-              onClick={() => setIndex(index + 1)}
-            >
-              Next ⏭
-            </button>
+            {data && index !== data.length - 1 && (
+              <button
+                className="bg-blue text-white font-semi-bold p-4 rounded-lg shadow-xl-"
+                onClick={() => setIndex(index + 1)}
+              >
+                Next ⏭
+              </button>
+            )}
           </div>
           <div className="mt-5">
             <Popup
