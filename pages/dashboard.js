@@ -103,43 +103,43 @@ const dashboard = () => {
             <div className="mr-5">
               <i class="ri-book-2-line"></i>
             </div>
-            <h2>Budgeting Basics</h2>
+            <h2>Introduction to Budgeting</h2>
           </div>
 
           <div
             onClick={() => setPage("taxes")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
-              page == "investment" && "bg-blue text-white"
+              page == "taxes" && "bg-blue text-white"
             } rounded-lg cursor-pointer bg-none font-semi-bold hover:text-white  hover:bg-blue`}
           >
             <div className="mr-5">
               <i class="ri-book-2-line"></i>
             </div>
-            <h2>Taxes</h2>
+            <h2>Learn All About Taxes</h2>
           </div>
 
           <div
             onClick={() => setPage("cashflow")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
-              page == "investment" && "bg-blue text-white"
+              page == "cashflow" && "bg-blue text-white"
             } rounded-lg cursor-pointer bg-none font-semi-bold hover:text-white  hover:bg-blue`}
           >
             <div className="mr-5">
               <i class="ri-book-2-line"></i>
             </div>
-            <h2>Cash Flow</h2>
+            <h2>Cash Flow and How to Manage It</h2>
           </div>
 
           <div
             onClick={() => setPage("creditscore")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
-              page == "investment" && "bg-blue text-white"
+              page == "creditscore" && "bg-blue text-white"
             } rounded-lg cursor-pointer bg-none  font-semi-bold hover:text-white  hover:bg-blue`}
           >
             <div className="mr-5">
               <i class="ri-book-2-line"></i>
             </div>
-            <h2>Credit Score</h2>
+            <h2>What is Credit Score?</h2>
           </div>
 
           <div
