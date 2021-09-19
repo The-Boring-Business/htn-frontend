@@ -78,19 +78,32 @@ const dashboard = () => {
   };
 
   if (loggedIn == 0) {
-    return (
-      <div>
-        <h1>Please Enter Date of Birth</h1>
-        <form onSubmit={submitDobForm}>
-          <input
-            type="date"
-            value={dob}
-            onChange={(e) => setDob(e.target.value)}
-          />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    );
+  return (
+    <div className=" flex flex-col place-items-center place-content-center mt-40">
+      <h1 className="font-bold text-4xl mb-4">One last step!</h1>
+      <h1 className="font-semi-bold text-2xl mb-6">Enter your Birthday</h1>
+      <form onSubmit={submitDobForm}>
+        <div className="flex flex-col">
+          <div>
+            <input
+              className="border-2 p-2 rounded-md w-full"
+              type="date"
+              value={dob}
+              onChange={(e) => setDob(e.target.value)}
+            />
+          </div>
+          <div>
+            <button
+              className="bg-blue p-4 text-white font-bold rounded-lg place-self-stretch w-full mt-5 text-xl "
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
   } else if (loggedIn == 1) {
     return (
       <div className="flex flex-row border-10 border-red">
