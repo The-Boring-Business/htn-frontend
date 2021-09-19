@@ -14,7 +14,6 @@ const Reeva = ({ course }) => {
   const [index, setIndex] = useState(null);
   const [data, setData] = useState(null);
 
-
   useEffect(() => {
     axios
       .get(
@@ -95,14 +94,16 @@ const Reeva = ({ course }) => {
       slow: false,
       host: "https://translate.google.com",
     });
-
   };
 
   if (!isRegistered) {
     return (
       <div className="mx-auto my-auto">
         <form onSubmit={handleSubmit}>
-          <button className="bg-blue p-4 text-white rounded-lg font-semi-bold shadow-lg" type="submit">
+          <button
+            className="bg-blue p-4 text-white rounded-lg font-semi-bold shadow-lg"
+            type="submit"
+          >
             Register for course
           </button>
         </form>
@@ -122,12 +123,14 @@ const Reeva = ({ course }) => {
                 ⏮ Previous
               </button>
             )}
-            <button
-              className="bg-blue text-white font-semi-bold p-4 rounded-lg shadow-xl-"
-              onClick={() => setIndex(index + 1)}
-            >
-              Next ⏭
-            </button>
+            {data && index !== data.length - 1 && (
+              <button
+                className="bg-blue text-white font-semi-bold p-4 rounded-lg shadow-xl-"
+                onClick={() => setIndex(index + 1)}
+              >
+                Next ⏭
+              </button>
+            )}
           </div>
           <div className="mt-5">
             <Popup
