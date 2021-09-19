@@ -4,9 +4,11 @@ import Popup from "reactjs-popup";
 import firebase from "../firebase/clientApp";
 import FadeIn from "react-fade-in";
 const axios = require("axios");
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 const Reeva = ({ course }) => {
   const [user, loading, error] = useAuthState(firebase.auth());
+  const {speak} = useSpeechSynthesis();
   const [isRegistered, setIsRegistered] = useState(null);
   const [reevaQuestion, setReevaQuestion] = useState("");
   const [reevaAnswer, setReevaAnswer] = useState("");
@@ -83,12 +85,12 @@ const Reeva = ({ course }) => {
       .then((res) => {
         console.log(res);
         const answer = res.data.answer;
-        setReevaAnswer(answer);
+        setReevaAnswer(answer);        
+        speak({text: answer})
       })
       .catch((err) => {
         console.log(err);
       });
-
   };
 
   if (!isRegistered) {
