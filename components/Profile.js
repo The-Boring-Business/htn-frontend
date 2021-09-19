@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 const axios = require("axios");
 const Profile = () => {
   const router = useRouter();
-  const [myCourses, setMyCourses] = useState([]);
-  const [availableCourses, setAvailableCourses] = useState([]);
+  const [myCourses, setMyCourses] = useState(null);
+  const [availableCourses, setAvailableCourses] = useState(null);
   const [user, loading, error] = useAuthState(firebase.auth());
 
   const signOut = () => {
@@ -49,8 +49,10 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    getMyCourses();
-    getAvailableCourses();
+    if (user !== null) {
+      getMyCourses();
+      getAvailableCourses();
+    }
   }, [user]);
 
   if (user !== null) {
@@ -88,25 +90,27 @@ const Profile = () => {
           <div className="my-2 mb-8">
             <h1 className="font-bold text-3xl mb-6">Your Courses</h1>
             <div className="h-full flex overflow-x-auto gap-4">
-              {myCourses.map((course) => (
-                <CourseCard
-                  title={course.title}
-                  name={course.name}
-                  level={course.level}
-                />
-              ))}
+              {myCourses &&
+                myCourses.map((course) => (
+                  <CourseCard
+                    title={course.title}
+                    name={course.name}
+                    level={course.level}
+                  />
+                ))}
             </div>
           </div>
           <div className="my-2">
             <h1 className="font-bold text-3xl mb-6">Available Courses</h1>
             <div className="h-full flex overflow-x-auto gap-4">
-              {availableCourses.map((course) => (
-                <CourseCard
-                  title={course.title}
-                  name={course.name}
-                  level={course.level}
-                />
-              ))}
+              {availableCourses &&
+                availableCourses.map((course) => (
+                  <CourseCard
+                    title={course.title}
+                    name={course.name}
+                    level={course.level}
+                  />
+                ))}
             </div>
           </div>
         </div>
