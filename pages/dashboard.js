@@ -6,12 +6,14 @@ import Profile from "../components/Profile";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import ReactLoading from "react-loading";
+
 const axios = require("axios");
 
 const dashboard = () => {
   const router = useRouter();
   const [dob, setDob] = useState("");
-  const [loggedIn, setLoggedIn] = useState(0);
+  const [loggedIn, setLoggedIn] = useState(null);
   const [user, loading, error] = useAuthState(firebase.auth());
 
   useEffect(() => {
@@ -183,6 +185,12 @@ const dashboard = () => {
           {renderComponent()}
         </div>
       </div>
+    );
+  } else {
+    return (
+      <>
+        <ReactLoading height={667} width={375} />
+      </>
     );
   }
 };
