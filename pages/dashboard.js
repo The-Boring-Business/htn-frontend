@@ -27,12 +27,15 @@ const dashboard = () => {
   const [page, setPage] = useState("profile");
 
   useEffect(() => {
-    if (user) {
+    if (user !== null) {
+      console.log(user.email)
       axios
         .get(
-          "https://balanceed-db.azurewebsites.net/api/check/mail" + user.email
+          "https://balanceed-db.azurewebsites.net/api/check/mail/" + user.email
         )
         .then((res) => {
+          console.log(res)
+          console.log("status", res.data);
           setLoggedIn(res.data);
         })
         .catch((err) => {
@@ -42,6 +45,7 @@ const dashboard = () => {
   }, [user]);
 
   const submitDobForm = (e) => {
+    e.preventDefault();
     axios
       .post("https://balanceed-db.azurewebsites.net/api/auth/signup", {
         username: user.displayName,
@@ -111,7 +115,9 @@ const dashboard = () => {
     return (
       <div className="flex flex-row border-10 border-red">
         <div className="flex flex-col w-1/4 border-40 border-blue p-8">
-          <h1 className="font-bold text-xl ml-4 mb-3 uppercase tracking-widest border-b-2 border-gray pb-2">Learning</h1>
+          <h1 className="font-bold text-xl ml-4 mb-3 uppercase tracking-widest border-b-2 border-gray pb-2">
+            Learning
+          </h1>
           <div
             onClick={() => setPage("analytics")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
@@ -172,7 +178,9 @@ const dashboard = () => {
             <h2>What is Credit Score?</h2>
           </div>
 
-          <h1 className="font-bold text-xl ml-4 mb-3 uppercase tracking-widest border-b-2 border-gray pb-2">Budget diary</h1>
+          <h1 className="font-bold text-xl ml-4 mb-3 uppercase tracking-widest border-b-2 border-gray pb-2">
+            Budget diary
+          </h1>
           <div
             onClick={() => setPage("income")}
             className={`flex w-60 py-2.5 px-5 mb-4 text-l ${
